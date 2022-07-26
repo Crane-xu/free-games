@@ -21,10 +21,10 @@ const GameCardStyle = styled.div`
     background: #32383e;
 
     &:after{
+        display: none;
         content:" "; 
         width: 20px;
         height: 20px;
-        display: none;
         border-radius: 50%;
         background: #aaf;
         position: relative;
@@ -69,7 +69,7 @@ const GameCard = (props) => {
     const gameInfo = props.gameInfo;
 
     return (
-        <GameCardStyle>
+        <GameCardStyle onClick={props.onClick}>
             <img src={gameInfo.thumbnail} alt={gameInfo.title} />
             <div className="title">{gameInfo.title}</div>
             <p className="description">{gameInfo.short_description}</p>

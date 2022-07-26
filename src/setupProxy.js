@@ -8,4 +8,14 @@ module.exports = function (app) {
             '^/api': '/api',
         },
     }));
+    // app.use(
+    //     '/g',
+    //     createProxyMiddleware({
+    //         target: 'https://www.freetogame.com',
+    //         changeOrigin: true,
+    //         pathRewrite: {
+    //             '^/g': '/g',
+    //         }
+    //     })
+    // );
 };
