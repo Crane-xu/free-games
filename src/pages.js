@@ -6,7 +6,7 @@ import NavBar from './components/nav-bar';
 // 页面
 import Home from './pages/home';
 import Detail from './pages/detail';
-import Topics from './pages/topics';
+import Search from './pages/search';
 
 function Pages() {
   return (
@@ -15,7 +15,7 @@ function Pages() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/detail/:gameId" element={<Detail />} />
-        <Route path="/topics" element={<Topics />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
   );

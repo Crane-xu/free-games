@@ -5,6 +5,7 @@ import menu from "../static/imgs/menu.png";
 import logo from "../static/imgs/freetogame-logo.png";
 
 const NavBarHeight = '50px';
+
 const NavBarStyle = styled.div`
     position: fixed;
     top: 0;
@@ -98,6 +99,7 @@ function NavBar() {
 
     function linkTo(targetPage) {
         navigate(targetPage);
+        toggleMenu();
     }
 
     function toggleMenu() {
@@ -117,8 +119,7 @@ function NavBar() {
                 </button>
                 <ul className={menuClass}>
                     <li onClick={() => linkTo("/")}>Home</li>
-                    <li onClick={() => linkTo("/detail")}>Detail</li>
-                    <li onClick={() => linkTo("/topics")}>topics</li>
+                    <li onClick={() => linkTo("/search")}>Search</li>
                 </ul>
             </div>
         </NavBarStyle>

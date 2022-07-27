@@ -8,7 +8,7 @@ const textColor = "#aaa";
 const subTextColor = "#7a8288";
 
 
-const DetailStyle = styled.div`
+const DetailWrapper = styled.div`
     margin-top: 50px;
     display: flex;
     align-items: center;
@@ -114,7 +114,7 @@ const Section = styled.section`
     }
 `;
 
-const BigImage = styled.div`
+const LargeImageWrapper = styled.div`
     height: 100vh;
     width: 100vw;
     z-index: 10;
@@ -133,13 +133,13 @@ const BigImage = styled.div`
 
 function Detail() {
     let params = useParams();
-    const bg = `https://www.freetogame.com/g/${params.gameId}/background.jpg`;
     const [detail, setGameDetail] = useState({});
     const [readMore, setReadMore] = useState("+ Read More");
     const [description, setDescription] = useState("");
     const [requirements, setRequirements] = useState({});
-    const [lookPic, setLookPic] = useState(false);
-    const [bigImage, setBigImage] = useState(null);
+    const [showLargeImage, setShowLargeImage] = useState(false);
+    const [largeImage, setLargeImage] = useState(null);
+    const backgroundURL = `https://www.freetogame.com/g/${params.gameId}/background.jpg`;
 
     useEffect(() => {
         document.title = `Game Details`;
@@ -190,22 +190,22 @@ function Detail() {
         window.open(gameUrl);
     }
 
-    function openLargeImage(picUrl){
-        setLookPic(true);
-        setBigImage(picUrl);
+    function openLargeImage(imageUrl) {
+        setShowLargeImage(true);
+        setLargeImage(imageUrl);
     }
 
-    function closeLargeImage(){
-        setLookPic(false);
-        setBigImage(null);
+    function closeLargeImage() {
+        setShowLargeImage(false);
+        setLargeImage(null);
     }
 
     return (
-        <DetailStyle background={bg}>
-            {lookPic &&
-                <BigImage onClick={() => closeLargeImage()}>
-                    <img src={bigImage} alt="Big Screenshots" />
-                </BigImage>
+        <DetailWrapper background={backgroundURL}>
+            {showLargeImage &&
+                <LargeImageWrapper onClick={() => closeLargeImage()}>
+                    <img src={largeImage} alt="Large Screenshots" />
+                </LargeImageWrapper>
             }
             <div className="detail-content">
                 <div className="detail-left">
@@ -255,7 +255,7 @@ function Detail() {
                     <Section>
                         <h3>{detail.title} Screenshots</h3>
                         {detail.screenshots?.map(item => (
-                            <img className="screen-shots" src={item.image} key={item.id} alt="game screenshots" onClick={() => openLargeImage(item.image)}/>
+                            <img className="screen-shots" src={item.image} key={item.id} alt="game screenshots" onClick={() => openLargeImage(item.image)} />
                         ))}
                     </Section>
                     <Section>
@@ -288,9 +288,8 @@ function Detail() {
                         </div>
                     </Section>
                 </div>
-
             </div>
-        </DetailStyle>
+        </DetailWrapper>
     );
 }
 
